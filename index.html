@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>امیرحسین شجاعی‌نسب | Web Developer حرفه‌ای</title>
+
+    <style>
+        /* ---------------- Global ---------------- */
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;700&display=swap');
+
+        *{ margin:0; padding:0; box-sizing:border-box; }
+        body{
+            font-family:"Vazirmatn", sans-serif;
+            background:#070707;
+            color:#fff;
+            scroll-behavior:smooth;
+        }
+
+        /* ---------------- Navbar ---------------- */
+        nav{
+            position:fixed;
+            top:0; right:0; left:0;
+            padding:18px 40px;
+            display:flex; justify-content:space-between; align-items:center;
+            backdrop-filter: blur(12px);
+            background:rgba(0,0,0,0.5);
+            border-bottom:1px solid rgba(255,255,255,0.1);
+            z-index:1000;
+        }
+        nav h2{
+            font-size:1.5rem;
+            background:linear-gradient(90deg,#9b4dff,#3ecbff);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            font-weight:700;
+        }
+        nav ul{ display:flex; gap:30px; list-style:none; }
+        nav a{
+            color:#fff; text-decoration:none; font-size:1rem;
+            opacity:0.85; transition:0.3s;
+        }
+        nav a:hover{ opacity:1; color:#3ecbff; }
+
+        /* ---------------- Header ---------------- */
+        header{
+            height:100vh;
+            display:flex; flex-direction:column;
+            justify-content:center; align-items:center;
+            text-align:center;
+            background:radial-gradient(circle at top, #3a1570, #050505 70%);
+            position:relative; overflow:hidden;
+        }
+        header .glow{
+            position:absolute; width:700px; height:700px;
+            background:#7c32ff55; filter:blur(130px);
+            top:-200px;
+            animation:float 8s infinite alternate ease-in-out;
+        }
+        @keyframes float{
+            0%{ transform:translateX(-200px); }
+            100%{ transform:translateX(250px); }
+        }
+        header h1{ font-size:4rem; font-weight:700; margin-bottom:10px; }
+        header h1 span{
+            background:linear-gradient(90deg,#a657ff,#4be3ff);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+        }
+        header p{ font-size:1.4rem; opacity:0.85; }
+
+        /* ---------------- Sections ---------------- */
+        .section{ padding:130px 40px; max-width:1200px; margin:auto; }
+        .section h3{
+            font-size:2rem;
+            border-right:5px solid #4be3ff;
+            padding-right:12px;
+            margin-bottom:25px;
+            font-weight:600;
+        }
+        .about-text{ line-height:2.3; font-size:1.25rem; opacity:0.9; }
+
+        /* ---------------- Tabriz (Upgraded) ---------------- */
+        #tabriz{
+            position:relative;
+            background:url('https://images.unsplash.com/photo-1587474265482-8989d81f7a04?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat fixed;
+            padding:140px 40px;
+            border-radius:20px;
+            margin-top:70px;
+        }
+        #tabriz::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:rgba(0,0,0,0.65);
+            backdrop-filter:blur(3px);
+        }
+        #tabriz *{ position:relative; z-index:2; }
+
+        .tabriz-box{
+            padding:55px;
+            border-radius:22px;
+            background:rgba(10,10,10,0.7);
+            position:relative;
+            overflow:hidden;
+            border:2px solid transparent;
+            background-clip:padding-box;
+            transition:0.5s;
+        }
+        .tabriz-box::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            border-radius:inherit;
+            padding:2px;
+            background:linear-gradient(135deg,#a657ff,#4be3ff);
+            -webkit-mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite:xor;
+                    mask-composite:exclude;
+            opacity:0.45;
+            transition:0.5s;
+        }
+        .tabriz-box:hover{
+            transform:translateY(-10px);
+            box-shadow:0 0 35px #4be3ff55;
+        }
+        .tabriz-box:hover::before{
+            opacity:0.9;
+            filter:blur(1px);
+        }
+
+        .tabriz-title{
+            font-size:1.9rem;
+            margin-bottom:20px;
+            color:#4be3ff;
+            font-weight:700;
+        }
+
+        .tabriz-text{
+            font-size:1.3rem;
+            line-height:2.3;
+            opacity:0.95;
+        }
+        .tabriz-text span{
+            color:#a657ff;
+            font-weight:700;
+        }
+
+        /* ---------------- Skills ---------------- */
+        .skills-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+            gap:30px; margin-top:40px;
+        }
+        .skill-box{
+            background:#0f0f0f;
+            padding:30px;
+            border-radius:18px;
+            border:1px solid #1d1d1d;
+            transition:0.4s;
+            overflow:hidden;
+        }
+        .skill-box:hover{
+            transform:translateY(-12px);
+            border-color:#4be3ff;
+            box-shadow:0 0 25px #4be3ff55;
+        }
+
+        /* ---------------- Projects ---------------- */
+        .projects{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+            gap:35px; margin-top:40px;
+        }
+        .project-card{
+            background:#0f0f0f;
+            border-radius:18px;
+            border:1px solid #222;
+            overflow:hidden;
+            text-align:center;
+            cursor:pointer;
+            transition:0.4s;
+        }
+        .project-card img{
+            width:100%; height:180px; object-fit:cover; transition:0.5s;
+        }
+        .project-card:hover img{ transform:scale(1.1); }
+
+        /* ---------------- News ---------------- */
+        .news-slider{
+            display:flex; overflow-x:auto; gap:20px;
+            padding-bottom:10px; scroll-behavior:smooth;
+        }
+        .news-slider::-webkit-scrollbar{ display:none; }
+
+        .news-card{
+            background:#0f0f0f; border:1px solid #222;
+            border-radius:18px; padding:20px;
+            transition:0.4s; cursor:pointer;
+        }
+        .news-card:hover{
+            transform:translateY(-10px);
+            box-shadow:0 0 25px #4be3ff55;
+        }
+        .news-card h4{ color:#4be3ff; margin-bottom:10px; }
+
+        /* ---------------- Contact ---------------- */
+        .contact-box{
+            background:#0f0f0f; padding:45px; border-radius:20px;
+            border:1px solid #1f1f1f; text-align:center;
+            max-width:650px; margin:50px auto 0; position:relative;
+        }
+        .contact-box::before{
+            content:""; position:absolute; width:500px; height:500px;
+            background:#4be3ff44; filter:blur(100px);
+            top:-150px; right:-150px; transition:1s;
+        }
+        .contact-box:hover::before{ transform:scale(1.2); }
+
+        .contact-btn{
+            padding:12px 26px;
+            background:linear-gradient(135deg,#a657ff,#4be3ff);
+            border:none; color:#fff;
+            border-radius:10px;
+            cursor:pointer; font-size:1.1rem;
+            transition:.3s;
+        }
+        .contact-btn:hover{
+            transform:translateY(-5px);
+            box-shadow:0 0 20px #4be3ffaa;
+        }
+
+        /* ---------------- Back To Top ---------------- */
+        #backTop{
+            position:fixed; bottom:25px; left:25px;
+            padding:12px 18px; font-size:1rem;
+            background:#4be3ff; color:black;
+            border:none; cursor:pointer; border-radius:8px;
+            display:none; z-index:999;
+        }
+
+        /* ---------------- Fade Animation ---------------- */
+        .fade{
+            opacity:0; transform:translateY(35px);
+            transition:1s ease;
+        }
+        .fade.show{
+            opacity:1; transform:translateY(0);
+        }
+
+        /* ---------------- Responsive ---------------- */
+        @media(max-width:700px){
+            header h1{ font-size:2.8rem; }
+            nav ul{ display:none; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+    <h2>AmirHossein</h2>
+    <ul>
+        <li><a href="#about">درباره</a></li>
+        <li><a href="#tabriz">تبریز</a></li>
+        <li><a href="#skills">مهارت‌ها</a></li>
+        <li><a href="#projects">نمونه‌کار</a></li>
+        <li><a href="#news">اخبار</a></li>
+        <li><a href="#contact">تماس</a></li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<header>
+    <div class="glow"></div>
+    <h1><span>امیرحسین شجاعی‌نسب</span></h1>
+    <p>طراح و برنامه‌نویس وب | Web Developer</p>
+</header>
+
+<!-- About -->
+<section class="section fade" id="about">
+    <h3>درباره من</h3>
+    <p class="about-text">
+        من امیرحسین شجاعی‌نسب هستم؛ طراح و برنامه‌نویس وب با تمرکز روی ساخت سایت‌های مدرن، سریع و استاندارد.  
+        عاشق طراحی خلاقانه، نورپردازی نئونی و تجربه کاربری حرفه‌ای هستم.
+    </p>
+</section>
+
+<!-- Tabriz -->
+<section class="section fade" id="tabriz">
+    <h3>من اهل تبریز هستم</h3>
+
+    <div class="tabriz-box">
+        <h4 class="tabriz-title">تبریز، شهر فرهنگ و هنر</h4>
+
+        <p class="tabriz-text">
+            تبریز، شهری با ریشه‌های عمیق تاریخی و فرهنگی؛  
+            شهر شعر، هنر، بازارهای کهن و مردمانی که به مهمان‌نوازی شهره‌اند.  
+            از <span>ارگ تبریز</span> تا <span>بازار جهانی</span> و از <span>ائل‌گلی</span> تا کوچه‌های قدیمی مقصودیه،  
+            این شهر همیشه الهام‌بخش خلاقیت و اصالت بوده است.  
+            برای من، تبریز فقط زادگاه نیست؛  
+            سرزمین انگیزه، تلاش و پیشرفت است.
+        </p>
+    </div>
+</section>
+
+<!-- Skills -->
+<section class="section fade" id="skills">
+    <h3>مهارت‌ها</h3>
+    <div class="skills-grid">
+        <div class="skill-box"><h4>HTML</h4><p>ساختاردهی اصولی + ریسپانسیو</p></div>
+        <div class="skill-box"><h4>CSS</h4><p>انیمیشن + Flex + Grid + UI</p></div>
+        <div class="skill-box"><h4>UI Design</h4><p>طراحی رابط مدرن</p></div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section class="section fade" id="projects">
+    <h3>نمونه‌کار ها </h3>
+    <div class="projects">
+        <div class="project-card">
+            <img src="https://via.placeholder.com/400x180.png?text=Project+1">
+            <h4>وبسایت شرکتی</h4>
+            <p>طراحی مدرن و واکنش‌گرا برای شرکت‌های کوچک و متوسط.</p>
+        </div>
+        <div class="project-card">
+            <img src="https://via.placeholder.com/400x180.png?text=Project+2">
+            <h4>فروشگاه اینترنتی</h4>
+            <p>ساخت فروشگاه آنلاین با تجربه کاربری حرفه‌ای و طراحی جذاب.</p>
+        </div>
+        <div class="project-card">
+            <img src="https://via.placeholder.com/400x180.png?text=Project+3">
+            <h4>وبلاگ شخصی</h4>
+            <p>طراحی بلاگ با قابلیت مدیریت محتوا و ظاهر زیبا.</p>
+        </div>
+    </div>
+</section>
+
+<!-- News -->
+<section class="section fade" id="news">
+    <h3>اخبار و بلاگ</h3>
+    <div class="news-slider">
+        <div class="news-card"><h4>خبر ۱</h4><p>شروع پروژه جدید با طراحی مدرن و استاندارد HTML/CSS.</p></div>
+        <div class="news-card"><h4>خبر ۲</h4><p>آپدیت نمونه‌کارها با افکت‌های حرفه‌ای و ریسپانسیو.</p></div>
+        <div class="news-card"><h4>خبر ۳</h4><p>آموزش‌های CSS و انیمیشن برای وب‌دیولپرها.</p></div>
+        <div class="news-card"><h4>خبر ۴</h4><p>راه‌اندازی بخش بلاگ و اخبار زنده با افکت نئونی.</p></div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="section fade" id="contact">
+    <h3>تماس با من</h3>
+    <div class="contact-box">
+        <h4 class="contact-title">برای همکاری، پروژه یا طراحی سایت پیام بده 🌙</h4>
+        <p class="contact-info">شماره تماس: <span>09380672772</span></p>
+        <p class="contact-info">ایمیل: <span>a83123072@gmail.com</span></p>
+
+        <div class="contact-buttons">
+            <a href="tel:09380672772"><button class="contact-btn">📞 تماس مستقیم</button></a>
+            <a href="https://wa.me/989380672772"><button class="contact-btn">💬 واتساپ</button></a>
+            <a href="mailto:a83123072@gmail.com"><button class="contact-btn">📧 ارسال ایمیل</button></a>
+        </div>
+    </div>
+</section>
+
+<!-- Back To Top -->
+<button id="backTop">↑ بالا</button>
+
+<!-- Footer -->
+<footer>© 2025 | طراحی شده توسط امیرحسین شجاعی‌ نسب</footer>
+
+<!-- JS -->
+<script>
+    // Scroll Fade
+    const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(e => {
+            if(e.isIntersecting) e.target.classList.add("show");
+        });
+    });
+    document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+
+    // Back To Top
+    const btn = document.getElementById("backTop");
+    window.addEventListener("scroll",()=>{
+        btn.style.display = window.scrollY > 400 ? "block" : "none";
+    });
+    btn.onclick = ()=> window.scrollTo({ top:0, behavior:"smooth" });
+
+    // Auto Slider News
+    let slider = document.querySelector(".news-slider");
+    let scrollAmount = 0;
+    function autoScroll() {
+        scrollAmount += 1;
+        if(scrollAmount > slider.scrollWidth - slider.clientWidth) scrollAmount = 0;
+        slider.scrollTo({ left: scrollAmount, behavior:"smooth" });
+        requestAnimationFrame(autoScroll);
+    }
+    autoScroll();
+</script>
+
+</body>
+</html>
